@@ -1,13 +1,22 @@
 version: "3.8"
 services:
-  rabbitmq:
-    image: "rabbitmq:3-management"
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-  microtask:
+  microtasks:
     build: .
     ports:
       - "5000:5000"
+    environment:
+      - PORT=5000
+      - QUEUE=tasks
+      - RES_QUEUE=res_tasks
+      - RABBITMQ_HOST=host.docker.internal
+      - RABBITMQ_PORT=5672
     depends_on:
       - rabbitmq
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: my_rabbitmq
+    hostname: my_rabbitmq
+    ports:
+      - "5672:5672"
+      - "8080:15672"

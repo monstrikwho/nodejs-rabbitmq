@@ -1,0 +1,48 @@
+extends layout
+
+block content
+  .content
+    .title Асинхронная обработка HTTP запросов  
+    form#myForm
+      .input-wrapper
+        .input-box
+          input.text-input(type="number", id="number", placeholder="12345", name="number")
+          label(for="number") Введите число
+        button(type="submit") Отправить
+    .result
+
+  script.
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const number = document.getElementById('number').value;
+
+      const result = number * 2;
+      const resDot = result.toString().replace(/\d/g, '.')
+
+      document.querySelector('.result').textContent = resDot
+
+      fetch('/api/tasks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({number: number})
+      })
+      .then(async data => {
+        const res = await data.json();
+        if (res.status === 200) {
+          return res.data;
+        } else {
+          throw new Error(res.message);
+        }
+      })
+      .then(data => {
+        console.log(data)
+        document.querySelector('.result').textContent = JSON.stringify(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to submit data');
+      });
+    });

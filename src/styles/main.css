@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  color: #fff;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-moz-inner-spin-button,
+input[type="number"]::-moz-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  visibility: hidden;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #212121;
+}
+
+.content {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  column-gap: 50px;
+}
+
+.title {
+  font-size: 2rem;
+  margin: 22px 0 14px;
+  text-align: center;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 50px;
+}
+
+.input-box {
+  position: relative;
+}
+
+.text-input {
+  --padding: 15px;
+  width: calc(100% - var(--padding) * 2 - 2px);
+  padding: var(--padding);
+  color: #fff;
+  font-size: 16px;
+  border: 1px solid #2f2f2f;
+  background-color: transparent;
+  border-radius: 10px;
+  outline: none;
+}
+
+.text-input:hover {
+  border: 1px solid #8774e1 !important;
+}
+
+.text-input:focus {
+  border: none;
+  border: 1px solid #8774e1;
+}
+
+.text-input::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+.text-input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+
+.text-input:focus + label,
+.text-input:not(:placeholder-shown) + label {
+  background-color: #212121;
+  font-size: 14px;
+  padding: 0 5px;
+  top: 0;
+}
+
+label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  transition: 0.2s;
+  font-size: 17px;
+  pointer-events: none;
+}
+
+button {
+  background: #8774e1;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  outline: none;
+  padding: 15px;
+}
+
+.result {
+  margin: 0 auto;
+  margin-top: 50px;
+  min-width: 200px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #8774e1;
+  font-size: 28px;
+  background-color: rgba(135, 116, 225, 0.08);
+  border-radius: 12px;
+}
